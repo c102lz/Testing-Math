@@ -4,7 +4,127 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 public class MathTest {
-    public static void main(String[] args){
+    @ParameterizedTest
+    @CsvSource({
+            "6, 5",
+            "1.5, 3.7",
+            "-3.4, -5.2",
+            "-2, -4",
+            "5, -6",
+            "3.5, -4.3",
+            "-4, 6",
+            "-6.4, 5.98",
+            "0, 0",
+            "0, -1.4",
+            "0, -4",
+            "0, 1.4",
+            "0, 4",
+            "1, 0",
+            "1, -1.4",
+            "1, -4",
+            "1, 1.4",
+            "1, 4",
+            "-1, 0",
+            "-1, -1.4",
+            "-1, -4",
+            "-1, 1.4",
+            "-1, 4",
+            "0, 1",
+            "-1.4, 1",
+            "-4, 1",
+            "1.4, 1",
+            "4, 1"
+    })
+    public void testReciprocal(double base, double exponent) {
+        double left = Math.pow(base, -exponent);
+        double right = 1/Math.pow(base, exponent);
+        assertEquals(left, right);
 
     }
+
+
+    @ParameterizedTest
+    @CsvSource({
+            "6, 5, 17",
+            "5, 2, -3",
+            "3, -3, -4",
+            "-7, 2, 4",
+            "-4, -5, 2",
+            "-7, -8, -9",
+            "6.3, 5.5, 17.3",
+            "5.25, 2.4, -3.2",
+            "3.4, -3.3, -4.2",
+            "-7.5, 2.2, 4.6",
+            "-4.3, -5.2, 2.1",
+            "-7.4, -8.3, -9.2"
+    })
+    public void testMultiplying(double base, double a, double b) {
+        double left = Math.pow(base, a);
+        double right = Math.pow(base, (a+b));
+    }
+
+
+    @ParameterizedTest
+    @CsvSource({
+            "6, 5, 17",
+            "5, 2, -3",
+            "3, -3, -4",
+            "-7, 2, 4",
+            "-4, -5, 2",
+            "-7, -8, -9",
+            "6.3, 5.5, 17.3",
+            "5.25, 2.4, -3.2",
+            "3.4, -3.3, -4.2",
+            "-7.5, 2.2, 4.6",
+            "-4.3, -5.2, 2.1",
+            "-7.4, -8.3, -9.2"
+    })
+    public void testDividing(double base, double a, double b) {
+        double left = (Math.pow(base, a))/(Math.pow(base, b));
+        double right = Math.pow(base, (a-b));
+    }
+
+
+    @ParameterizedTest
+    @CsvSource({
+            "6, 5, 17",
+            "5, 2, -3",
+            "3, -3, -4",
+            "-7, 2, 4",
+            "-4, -5, 2",
+            "-7, -8, -9",
+            "6.3, 5.5, 17.3",
+            "5.25, 2.4, -3.2",
+            "3.4, -3.3, -4.2",
+            "-7.5, 2.2, 4.6",
+            "-4.3, -5.2, 2.1",
+            "-7.4, -8.3, -9.2"
+    })
+    public void testNestedPowers(double base, double a, double b) {
+        double left = Math.pow((Math.pow(base, a)), b);
+        double right = Math.pow(base, (a*b));
+        assertEquals(left, right);
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(doubles = {1, 5.0, 3.7, -1, -4.0, -4.9})
+    public void testZeroPower(double base) {
+        double answer = Math.pow(base, 0);
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(doubles = {1, 5.0, 3.7, -1, -4.0, -4.9})
+    public void testOnePower(double base) {
+        double answer = Math.pow(base, 1);
+    }
+
+
+    @ParameterizedTest
+    @ValueSource(doubles = {1, 5.0, 3.7, -1, -4.0, -4.9})
+    public void testZeroBase(double exponent) {
+        double answer = Math.pow(0, exponent);
+    }
+
 }
