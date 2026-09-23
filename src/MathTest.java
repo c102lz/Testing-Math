@@ -38,7 +38,7 @@ public class MathTest {
     public void testReciprocal(double base, double exponent) {
         double left = Math.pow(base, -exponent);
         double right = 1/Math.pow(base, exponent);
-        assertEquals(left, right);
+        assertEquals(left, right, 0.000001);
 
     }
 
@@ -59,8 +59,9 @@ public class MathTest {
             "-7.4, -8.3, -9.2"
     })
     public void testMultiplying(double base, double a, double b) {
-        double left = Math.pow(base, a);
+        double left = Math.pow(base, a) * Math.pow(base, b);
         double right = Math.pow(base, (a+b));
+        assertEquals(left, right, 0.000001);
     }
 
 
@@ -82,6 +83,7 @@ public class MathTest {
     public void testDividing(double base, double a, double b) {
         double left = (Math.pow(base, a))/(Math.pow(base, b));
         double right = Math.pow(base, (a-b));
+        assertEquals(left, right, 0.000001);
     }
 
 
@@ -101,9 +103,9 @@ public class MathTest {
             "-7.4, -8.3, -9.2"
     })
     public void testNestedPowers(double base, double a, double b) {
-        double left = Math.pow((Math.pow(base, a)), b);
+        double left = Math.pow(Math.pow(base, a), b);
         double right = Math.pow(base, (a*b));
-        assertEquals(left, right);
+        assertEquals(left, right, 0.000001);
     }
 
 
